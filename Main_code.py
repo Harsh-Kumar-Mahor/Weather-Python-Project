@@ -9,6 +9,8 @@ from timezonefinder import TimezoneFinder
 import datetime
 import pytz
 from PIL import ImageTk, Image
+from dotenv import load_dotenv
+import os
 
 # Structure of GUI
 root = Tk()
@@ -59,7 +61,8 @@ city_entry.grid(row=1, column=4, ipady=8, stick=NE)
 
 def city_name():
     # API Call
-    api_key = "ed9514eb94cbd8eff8e9104aac4dc76b"
+    load_dotenv()
+    api_key = os.environ.get('API_KEY')
     # your API Key
     api_request = requests.get("https://api.openweathermap.org/data/2.5/weather?q="
                                + city_entry.get() + "&units=metric&appid=" + api_key)
